@@ -13,9 +13,9 @@ builder.Services.AddSwaggerGen();
 //Environment.GetEnvironmentVariable("Connection_String")
 //builder.Configuration.GetConnectionString("Stephen_Pagdilao_DbDemo")
 
-builder.Services.AddScoped<IRepository<Pokemon>, SQLPokemonRepository>(repo => new SQLPokemonRepository(builder.Configuration.GetConnectionString("Stephen_Pagdilao_DbDemo")));
+builder.Services.AddScoped<IRepository<Pokemon>, SQLPokemonRepository>(repo => new SQLPokemonRepository(Environment.GetEnvironmentVariable("Connection_String")));
 builder.Services.AddScoped<IPokemonBL, PokemonBL>();
-builder.Services.AddScoped<IRepository<PokemonAbilityJoin>, SQLPokeAbilityJoinRepo>(repo => new SQLPokeAbilityJoinRepo(builder.Configuration.GetConnectionString("Stephen_Pagdilao_DbDemo")));
+builder.Services.AddScoped<IRepository<PokemonAbilityJoin>, SQLPokeAbilityJoinRepo>(repo => new SQLPokeAbilityJoinRepo(Environment.GetEnvironmentVariable("Connection_String")));
 builder.Services.AddScoped<IPokeAbiJoinBL, PokeAbiJoinBL>();
 
 var app = builder.Build();
