@@ -20,7 +20,7 @@ namespace PokeBL
 
         //============================================================
 
-        public async void AddPokemon(Pokemon p_poke)
+        public void AddPokemon(Pokemon p_poke)
         {
             //Processing data
             //We randomize the potential stat we get when we add a pokemon to the database
