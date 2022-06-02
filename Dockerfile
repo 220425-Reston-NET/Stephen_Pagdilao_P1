@@ -4,6 +4,9 @@ from mcr.microsoft.com/dotnet/aspnet:6.0 as runtime
 workdir /app
 #Remove the copy instruction here
 
+#Copy the publish folder into the image
+copy /publish ./
+
 #Change from CMD to entrypoint
 entrypoint ["dotnet", "PokeApi.dll"]
 
