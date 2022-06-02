@@ -14,4 +14,4 @@ entrypoint ["dotnet", "PokeApi.dll"]
 expose 5000
 
 #Add new environment to change ASP.NET app to listen to 5000 port
-env ASPNETCORE_URLS=https//+:5000
+env ASPNETCORE_URLS=http://+:5000
