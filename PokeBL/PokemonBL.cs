@@ -81,7 +81,16 @@ namespace PokeBL
 
             //Will return null or no value if no pokemon was found
             // pokemon => pokemon.Name == p_pokeName is a delegate
-            return _pokeRepo.GetAll().First(pokemon => pokemon.Name == p_pokeName);
+
+
+            try
+            {
+                return _pokeRepo.GetAll().First(pokemon => pokemon.Name == p_pokeName);
+            }
+            catch (System.InvalidOperationException)
+            {
+                return null;
+            }
         }
         
     }
