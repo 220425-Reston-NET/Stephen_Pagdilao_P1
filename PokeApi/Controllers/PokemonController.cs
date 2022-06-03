@@ -58,6 +58,10 @@ namespace PokeApi.Controllers
             {
                 return Conflict();
             }
+            catch(System.Exception)
+            {
+                return Conflict("Pokemon name already existed");
+            }
         }
 
         [HttpGet("SearchPokemonByName")]
