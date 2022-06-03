@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using PokeDL;
 using PokeModel;
 
@@ -6,7 +7,7 @@ namespace PokeBL
     public class PokemonBL : IPokemonBL
     {
         //================== Dependency Injection ====================
-        private IRepository<Pokemon> _pokeRepo;
+        private readonly IRepository<Pokemon> _pokeRepo;
         public PokemonBL(IRepository<Pokemon> p_pokeRepo)
         {
             _pokeRepo = p_pokeRepo;
@@ -35,7 +36,7 @@ namespace PokeBL
             }
             else
             {
-                throw new Exception("Pokemon name already exist");
+                throw new ValidationException("Pokemon name already exist");
             }
         }
 
@@ -51,38 +52,13 @@ namespace PokeBL
 
         public Pokemon SearchPokemonById(int p_id)
         {
-            // List<Pokemon> currentListOfPoke = _pokeRepo.GetAll();
-
-            // foreach (Pokemon pokeObj in currentListOfPoke)
-            // {
-            //     //Condition to check that the name is similar
-            //     if (pokeObj.PokeID == p_id)
-            //     {
-            //         return pokeObj;
-            //     }
-            // }
 
             //Will return null or no value if no pokemon was found
             return _pokeRepo.GetAll().First(pokemon => pokemon.PokeID == p_id);
         }
 
-        public Pokemon SearchPokemonByName(string p_pokeName)
-        {
-            // List<Pokemon> currentListOfPoke = _pokeRepo.GetAll();
-
-            // foreach (Pokemon pokeObj in currentListOfPoke)
-            // {
-            //     //Condition to check that the name is similar
-            //     if (pokeObj.Name == p_pokeName)
-            //     {
-            //         return pokeObj;
-            //     }
-            // }
-
-            //Will return null or no value if no pokemon was found
-            // pokemon => pokemon.Name == p_pokeName is a delegate
-
-
+        public Pokemon? SearchPokemonByName(string p_pokeName)
+        { 
             try
             {
                 return _pokeRepo.GetAll().First(pokemon => pokemon.Name == p_pokeName);
