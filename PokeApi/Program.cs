@@ -4,6 +4,18 @@ using PokeModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Adding CORS to allow all origins to have access to our backend
+builder.Services.AddCors(
+    (options) => {
+        //We configured our CORS to allow anyone to do anything with our backend
+        options.AddDefaultPolicy(origin => {
+            origin.AllowAnyOrigin(); //Allows any origin to talk to our backend
+            origin.AllowAnyMethod(); //Allows any http verb request in our backend
+            origin.AllowAnyHeader(); //Allows any http headers to have access to my backend
+        });
+    }
+);
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -26,6 +38,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+//MAKE SURE YOU ADD THIS AT THE BOTTOM OR ELSE CORS IS NOT CONFIGURE
+app.UseCors();
 
 app.UseHttpsRedirection();
 
