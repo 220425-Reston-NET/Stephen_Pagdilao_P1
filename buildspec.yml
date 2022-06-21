@@ -2,7 +2,7 @@
 version: 0.2
 
 phases:
-  # phase used to install all the necesarry dependencies c
+  # phase used to install all the necesarry dependencies
   install:
     commands:
       - echo 'Installing dotNet 6'
